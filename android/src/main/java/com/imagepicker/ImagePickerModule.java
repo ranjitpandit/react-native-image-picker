@@ -241,6 +241,10 @@ public class ImagePickerModule extends ReactContextBaseJavaModule
       {
         cameraIntent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, videoDurationLimit);
       }
+      // store the video in a location not seen by the photo gallery
+      final File original = createNewVideoFile(reactContext, this.options, true);
+      cameraCaptureURI = RealPathUtil.compatUriFromFile(reactContext, original);
+      cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, cameraCaptureURI);
     }
     else
     {
